@@ -2,12 +2,14 @@ import logging
 from fastapi import FastAPI
 
 from ports.into.status_response import StatusResponse
+from adapters.into.http.video import router as video_router
 
 
 logger = logging.getLogger("uvicorn.error")
 
 
 app = FastAPI(title="API for Sample App")
+app.include_router(video_router)
 
 
 @app.get("/")
