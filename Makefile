@@ -9,7 +9,7 @@ clean:
 	find . -name '__pycache__' -type d -delete
 
 init:
-	cp src/.env.dist src/.env
+	cp backend/src/.env.dist backend/src/.env
 
 frontend_build:
 	cd frontend && npm install
@@ -35,7 +35,7 @@ test:
 
 
 run_black:
-	poetry run blackd
+	cd backend && poetry run blackd
 
 it_run:
 	make backend_up ARGS="-d"
