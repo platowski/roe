@@ -3,11 +3,11 @@
 
 Requirements:
 
--   Docker
+-   Docker (and docker-compose)
 
 Requirements (dev):
 
--   Python 3.10+
+-   Python 3.12+
 -   Poetry
 -   npm
 
