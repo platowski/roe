@@ -1,4 +1,5 @@
 import logging
+import uvicorn
 from fastapi import FastAPI
 
 from ports.into.status_response import StatusResponse
@@ -26,4 +27,4 @@ base_host = "0.0.0.0"
 base_port = 8008
 
 if __name__ == "__main__":
-    app.run(host=base_host, port=base_port)
+    uvicorn.run("app:app", host=base_host, port=base_port)
