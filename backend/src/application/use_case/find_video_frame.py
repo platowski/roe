@@ -1,7 +1,7 @@
 import torch
 import logging
 
-from transformers import CLIPModel,  AutoProcessor
+from transformers import CLIPModel, AutoProcessor
 
 from application.use_case.capture_video_frames import CaptureVideoFramesUseCase
 
@@ -23,16 +23,13 @@ class FindVideoFrameUseCase:
         logger.error(f"Processing {len(frames)} frames")
 
         inputs = self.processor(
-
             text=[frame_description], images=frames, return_tensors="pt", padding=True
-
         )
         logger.error(f"Inputs generated")
         outputs = self.model(**inputs)
 
-        logits_per_text = outputs.logits_per_text  # this is the text-image similarity score
+        logits_per_text = outputs.logits_per_text
         probs_t = logits_per_text.softmax(dim=1).detach().numpy()
 
         most_similar_t_index = probs_t.argmax().item()
         return frames[most_similar_t_index]
-
