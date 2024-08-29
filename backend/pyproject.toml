@@ -18,6 +18,7 @@ tenacity = "^8.5.0"
 opencv-python = "^4.10.0.84"
 transformers = { version = "^4.12.0", extras = ["torch"] }
 pillow = "^10.4.0"
+pyright = "^1.1.378"
 
 [tool.poetry.dev-dependencies]
 black = { version = "^24.4.2", extras = [ "d" ] }
@@ -28,6 +29,27 @@ pytest-asyncio = "^0.23.7"
 
 [tool.poetry.group.dev.dependencies]
 setuptools = "^72.1.0"
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/node_modules",
+    "**/__pycache__",
+    "src/experimental",
+    "src/typestubs"
+]
+ignore = ["src/uploads"]
+defineConstant = { DEBUG = true }
+stubPath = "src/stubs"
+
+reportMissingImports = "none"
+reportMissingTypeStubs = false
+
+pythonVersion = "3.12"
+pythonPlatform = "Linux"
+
+executionEnvironments = [
+    { root = "src" }
+]
 
 [build-system]
 requires = ["poetry-core"]
