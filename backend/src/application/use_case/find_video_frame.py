@@ -1,7 +1,6 @@
 import torch
 import logging
 
-from PIL import Image
 from transformers import CLIPModel,  AutoProcessor
 
 from application.use_case.capture_video_frames import CaptureVideoFramesUseCase
@@ -37,36 +36,3 @@ class FindVideoFrameUseCase:
         most_similar_t_index = probs_t.argmax().item()
         return frames[most_similar_t_index]
 
-        # frame_embeddings = await self.generate_video_embeddings(frames)
-        # query_vector = await self.generate_query_vector(frame_description)
-
-        # similarities = (query_vector @ frame_embeddings.T).squeeze(0)
-
-        # Return the frame with the highest similarity
-        # most_similar_frame_index = similarities.argmax().item()
-        # return frames[most_similar_frame_index]
-
-    # async def generate_query_vector(self, description):
-    #     with torch.no_grad():
-    #         # Preprocess the description to tokenize it
-    #         text = self.tokenizer.tokenize(description)
-    #         # Generate the embedding
-    #         embedding = self.model.get_text_features(text)
-    #     return embedding
-
-    # async def generate_video_embeddings(self, frames):
-    #     embeddings = []
-    #     for frame in frames:
-    #         with torch.no_grad():
-    #             # For each frame in the chunk, preprocess and convert to tensor
-    #             url = "http://images.cocodataset.org/val2017/000000039769.jpg"
-    #             import requests
-    #
-    #             image = Image.open(requests.get(url, stream=True).raw)
-    #             image_tensor = self.processor.preprocess(
-    #                 images=image, return_tensors="pt"
-    #             )
-    #             # Generate the embedding
-    #             embeddings.append(self.model(**image_tensor))
-    #
-    #         return torch.stack(embeddings)
